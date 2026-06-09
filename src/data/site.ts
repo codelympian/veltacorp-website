@@ -15,6 +15,13 @@ export const company = {
   email: "info@veltacorpwellness.com",
   phone: "+234 706 457 1419",
   phoneHref: "tel:+2347064571419",
+  whatsapp: {
+    number: "2347064571419",
+    // wa.me link with a friendly pre-filled message for the user to send.
+    link: `https://wa.me/2347064571419?text=${encodeURIComponent(
+      "Hello Veltacorp, I'd like to learn more about your corporate wellness programs.",
+    )}`,
+  },
   copyrightYear: 2026,
   social: {
     instagram: "https://instagram.com/", // TODO: add handle

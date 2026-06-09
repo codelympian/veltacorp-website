@@ -8,7 +8,12 @@ import {
   HiOutlineLocationMarker,
 } from "react-icons/hi";
 import { HiCheckCircle, HiExclamationCircle } from "react-icons/hi2";
-import { FaInstagram, FaLinkedinIn, FaFacebookF } from "react-icons/fa6";
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaFacebookF,
+  FaWhatsapp,
+} from "react-icons/fa6";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { company, contact } from "@/data/site";
@@ -34,6 +39,12 @@ const details = [
     value: company.phone,
     href: company.phoneHref,
   },
+  {
+    Icon: FaWhatsapp,
+    label: "WhatsApp",
+    value: "Chat with us",
+    href: company.whatsapp.link,
+  },
 ];
 
 const socials = [
@@ -54,10 +65,7 @@ export function Contact() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     formData.append("access_key", contact.web3formsAccessKey);
-    formData.append(
-      "subject",
-      "New enquiry from Veltacorp website",
-    );
+    formData.append("subject", "New enquiry from Veltacorp website");
     formData.append("from_name", "Veltacorp Website");
 
     try {
@@ -110,6 +118,12 @@ export function Contact() {
                     {href ? (
                       <a
                         href={href}
+                        target={href.startsWith("http") ? "_blank" : undefined}
+                        rel={
+                          href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="font-medium transition-colors hover:text-brand-green"
                       >
                         {value}

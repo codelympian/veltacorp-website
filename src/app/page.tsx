@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Founder } from "@/components/sections/Founder";
@@ -31,6 +32,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <FloatingWhatsApp />
       <BackToTop />
     </>
   );
