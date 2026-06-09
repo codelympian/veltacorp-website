@@ -37,23 +37,6 @@ export function Certifications() {
           </Reveal>
         ))}
       </div>
-
-      {/* Future partners placeholder */}
-      <Reveal delay={0.1}>
-        <div className="mt-8 rounded-2xl border border-dashed border-line bg-surface/50 p-8 text-center">
-          <p className="text-sm font-medium text-muted">
-            Future partner logos &amp; accreditation badges
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-12 w-28 rounded-lg bg-white ring-1 ring-line"
-              />
-            ))}
-          </div>
-        </div>
-      </Reveal>
     </Section>
   );
 }

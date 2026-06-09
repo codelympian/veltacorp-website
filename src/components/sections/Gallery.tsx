@@ -3,9 +3,11 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { images } from "@/data/images";
 
-// Authentic client photos. First image spans larger for a premium mosaic feel.
+// Authentic client photos arranged as a gap-free mosaic: a large feature tile
+// top-left and a wide tile on the bottom row tile cleanly into a 4x3 grid.
 const spans = [
   "sm:col-span-2 sm:row-span-2",
+  "",
   "",
   "",
   "",

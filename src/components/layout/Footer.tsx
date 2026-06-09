@@ -18,13 +18,13 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Brand */}
           <div>
-            <div className="inline-flex rounded-xl bg-white p-3 shadow-soft">
+            <div className="inline-flex rounded-xl bg-white p-4 shadow-soft">
               <Image
-                src={images.logo}
+                src={images.logoChip}
                 alt="Veltacorp Wellness & Fitness Solutions"
-                width={1100}
-                height={650}
-                className="h-12 w-auto"
+                width={432}
+                height={305}
+                className="h-16 w-auto"
               />
             </div>
             <p className="mt-5 max-w-xs font-display text-lg font-semibold leading-snug">

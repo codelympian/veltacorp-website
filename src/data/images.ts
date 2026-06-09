@@ -4,7 +4,11 @@
  */
 
 export const images = {
-  logo: "/assets/logo.jpeg",
+  // Trimmed + transparent for light backgrounds (header); trimmed (white bg)
+  // for the footer chip. Original raster kept as logoOriginal for reference.
+  logo: "/assets/logo-transparent.png",
+  logoChip: "/assets/logo-trimmed.png",
+  logoOriginal: "/assets/logo.jpeg",
   founder: "/assets/founder.jpeg",
 
   // Real client photos (authentic outdoor wellness/fitness sessions)
@@ -16,6 +20,7 @@ export const images = {
     "/assets/pic5.jpeg",
     "/assets/pic6.jpeg",
     "/assets/pic7.jpeg",
+    "/assets/pic8.jpeg",
   ],
 
   // Hero + section features
