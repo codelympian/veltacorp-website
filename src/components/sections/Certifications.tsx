@@ -2,9 +2,11 @@ import Image from "next/image";
 import { FaAward } from "react-icons/fa6";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { certifications } from "@/data/site";
+import { getContent } from "@/sanity/getContent";
 
-export function Certifications() {
+export async function Certifications() {
+  const { certifications } = await getContent();
+
   return (
     <Section id="certifications" className="bg-white">
       <SectionHeading

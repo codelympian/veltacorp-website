@@ -2,10 +2,11 @@ import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi2";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { hero, whyChooseUs } from "@/data/site";
-import { images } from "@/data/images";
+import { getContent } from "@/sanity/getContent";
 
-export function Hero() {
+export async function Hero() {
+  const { hero, whyChooseUs, images } = await getContent();
+
   return (
     <section
       id="home"
@@ -28,9 +29,9 @@ export function Hero() {
 
           <Reveal delay={0.05}>
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Transform Workplace Wellness Through{" "}
+              {hero.headlineLead}{" "}
               <span className="text-gradient-brand">
-                Sport, Fitness &amp; Engagement
+                {hero.headlineHighlight}
               </span>
             </h1>
           </Reveal>
@@ -91,7 +92,9 @@ export function Hero() {
               <p className="font-display text-2xl font-extrabold text-brand-green">
                 Healthier teams
               </p>
-              <p className="text-sm text-muted">Stronger, more productive organizations</p>
+              <p className="text-sm text-muted">
+                Stronger, more productive organizations
+              </p>
             </div>
           </div>
         </Reveal>

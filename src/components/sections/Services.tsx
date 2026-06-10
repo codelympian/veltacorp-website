@@ -10,8 +10,7 @@ import {
 import { HiCheck } from "react-icons/hi2";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { services } from "@/data/site";
-import { images } from "@/data/images";
+import { getContent } from "@/sanity/getContent";
 
 const iconMap: Record<string, IconType> = {
   wellness: FaHeartPulse,
@@ -21,7 +20,9 @@ const iconMap: Record<string, IconType> = {
   team: FaPeopleGroup,
 };
 
-export function Services() {
+export async function Services() {
+  const { services, images } = await getContent();
+
   return (
     <Section id="services" className="bg-white">
       <SectionHeading
@@ -77,7 +78,7 @@ export function Services() {
           );
         })}
 
-        {/* CTA card to balance the 5-card grid */}
+        {/* CTA card to balance the grid */}
         <Reveal delay={0.16}>
           <div className="flex h-full flex-col justify-center rounded-2xl bg-gradient-to-br from-brand-blue to-brand-green p-8 text-white shadow-card">
             <h3 className="font-display text-xl font-bold">

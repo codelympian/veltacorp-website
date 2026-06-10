@@ -2,16 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from "react-icons/fa6";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
-import { company, nav } from "@/data/site";
+import { nav } from "@/data/site";
 import { images } from "@/data/images";
+import { getContent } from "@/sanity/getContent";
 
-const socials = [
-  { label: "Instagram", href: company.social.instagram, Icon: FaInstagram },
-  { label: "LinkedIn", href: company.social.linkedin, Icon: FaLinkedinIn },
-  { label: "Facebook", href: company.social.facebook, Icon: FaFacebookF },
-];
+export async function Footer() {
+  const { company } = await getContent();
 
-export function Footer() {
+  const socials = [
+    { label: "Instagram", href: company.social.instagram, Icon: FaInstagram },
+    { label: "LinkedIn", href: company.social.linkedin, Icon: FaLinkedinIn },
+    { label: "Facebook", href: company.social.facebook, Icon: FaFacebookF },
+  ];
+
   return (
     <footer className="bg-ink text-white">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">

@@ -12,9 +12,12 @@ import { Process } from "@/components/sections/Process";
 import { Gallery } from "@/components/sections/Gallery";
 import { Certifications } from "@/components/sections/Certifications";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { Contact } from "@/components/sections/Contact";
+import { Contact } from "@/components/sections/ContactForm";
+import { getContent } from "@/sanity/getContent";
 
-export default function Home() {
+export default async function Home() {
+  const { company, contact } = await getContent();
+
   return (
     <>
       <Header />
@@ -29,7 +32,7 @@ export default function Home() {
         <Gallery />
         <Certifications />
         <Testimonials />
-        <Contact />
+        <Contact company={company} contact={contact} />
       </main>
       <Footer />
       <FloatingWhatsApp />

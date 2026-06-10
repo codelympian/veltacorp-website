@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { getContent } from "@/sanity/getContent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,41 +18,41 @@ const jakarta = Plus_Jakarta_Sans({
 
 const SITE_URL = "https://veltacorpwellness.com";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default:
-      "Veltacorp Wellness & Fitness Solutions | Corporate Wellness in Lagos",
-    template: "%s | Veltacorp Wellness & Fitness Solutions",
-  },
-  description:
-    "Veltacorp helps organizations build healthier, happier and more productive teams through corporate wellness programs, fitness initiatives, team-building and racket sports experiences.",
-  keywords: [
-    "corporate wellness Nigeria",
-    "employee wellbeing Lagos",
-    "workplace fitness programs",
-    "corporate team building",
-    "employee engagement",
-    "racket sports corporate",
-    "Veltacorp",
-  ],
-  authors: [{ name: "Veltacorp Wellness & Fitness Solutions" }],
-  openGraph: {
-    type: "website",
-    locale: "en_NG",
-    url: SITE_URL,
-    siteName: "Veltacorp Wellness & Fitness Solutions",
-    title: "Healthier People. Stronger Organizations.",
-    description:
-      "Corporate wellness, fitness, team-building and racket sports programs that improve employee wellbeing, engagement and productivity.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Veltacorp Wellness & Fitness Solutions",
-    description: "Healthier People. Stronger Organizations.",
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo, company } = await getContent();
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: seo.metaTitle,
+      template: `%s | ${company.name}`,
+    },
+    description: seo.metaDescription,
+    keywords: [
+      "corporate wellness Nigeria",
+      "employee wellbeing Lagos",
+      "workplace fitness programs",
+      "corporate team building",
+      "employee engagement",
+      "racket sports corporate",
+      "Veltacorp",
+    ],
+    authors: [{ name: company.name }],
+    openGraph: {
+      type: "website",
+      locale: "en_NG",
+      url: SITE_URL,
+      siteName: company.name,
+      title: company.tagline,
+      description: seo.metaDescription,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: company.name,
+      description: company.tagline,
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default function RootLayout({
   children,

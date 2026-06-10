@@ -1,16 +1,11 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { about } from "@/data/site";
-import { images } from "@/data/images";
+import { getContent } from "@/sanity/getContent";
 
-const stats = [
-  { value: "5", label: "Core program areas" },
-  { value: "9+", label: "Industries served" },
-  { value: "100%", label: "Tailored to your team" },
-];
+export async function About() {
+  const { about, images } = await getContent();
 
-export function About() {
   return (
     <section id="about" className="scroll-mt-24 bg-white py-20 sm:py-28">
       <Container className="grid items-center gap-14 lg:grid-cols-2">
@@ -44,7 +39,8 @@ export function About() {
             </span>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               A trusted partner for healthier,
-              <span className="text-brand-blue"> high-performing</span> workplaces
+              <span className="text-brand-blue"> high-performing</span>{" "}
+              workplaces
             </h2>
           </Reveal>
           <Reveal delay={0.05}>
@@ -60,7 +56,7 @@ export function About() {
 
           <Reveal delay={0.15}>
             <dl className="mt-10 grid grid-cols-3 gap-4">
-              {stats.map((s) => (
+              {about.stats.map((s) => (
                 <div
                   key={s.label}
                   className="rounded-2xl bg-surface p-5 text-center ring-1 ring-line"

@@ -2,10 +2,11 @@ import Image from "next/image";
 import { HiCheckBadge } from "react-icons/hi2";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { founder } from "@/data/site";
-import { images } from "@/data/images";
+import { getContent } from "@/sanity/getContent";
 
-export function Founder() {
+export async function Founder() {
+  const { founder, images } = await getContent();
+
   return (
     <section className="scroll-mt-24 bg-surface py-20 sm:py-28">
       <Container className="grid items-start gap-14 lg:grid-cols-[0.85fr_1.15fr]">

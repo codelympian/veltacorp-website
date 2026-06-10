@@ -1,11 +1,13 @@
 import { FaWhatsapp } from "react-icons/fa6";
-import { company } from "@/data/site";
+import { getContent } from "@/sanity/getContent";
 
 /**
  * Always-visible WhatsApp tap-to-chat button. Uses WhatsApp's brand green so
  * it's instantly recognizable. Sits bottom-right; BackToTop stacks above it.
  */
-export function FloatingWhatsApp() {
+export async function FloatingWhatsApp() {
+  const { company } = await getContent();
+
   return (
     <a
       href={company.whatsapp.link}

@@ -1,9 +1,11 @@
 import { HiCheckCircle } from "react-icons/hi2";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { whyChooseUs } from "@/data/site";
+import { getContent } from "@/sanity/getContent";
 
-export function WhyChooseUs() {
+export async function WhyChooseUs() {
+  const { whyChooseUs } = await getContent();
+
   return (
     <section className="relative scroll-mt-24 overflow-hidden bg-brand-blue-dark py-20 text-white sm:py-28">
       {/* Decorative glow */}

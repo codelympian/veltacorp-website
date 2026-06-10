@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
-import { FaQuoteLeft } from "react-icons/fa6";
 import {
+  FaQuoteLeft,
   FaHeartPulse,
   FaPeopleGroup,
   FaArrowTrendUp,
@@ -9,7 +9,7 @@ import {
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { testimonials } from "@/data/site";
+import { getContent } from "@/sanity/getContent";
 
 // Outcome pillars shown until real client testimonials are added.
 const impact: { Icon: IconType; title: string; body: string }[] = [
@@ -35,7 +35,8 @@ const impact: { Icon: IconType; title: string; body: string }[] = [
   },
 ];
 
-export function Testimonials() {
+export async function Testimonials() {
+  const { testimonials } = await getContent();
   const hasTestimonials = testimonials.length > 0;
 
   // Real testimonials view (auto-enabled once data exists)
@@ -49,7 +50,7 @@ export function Testimonials() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
-            <Reveal key={t.author} delay={(i % 3) * 0.08}>
+            <Reveal key={`${t.author}-${i}`} delay={(i % 3) * 0.08}>
               <figure className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-soft ring-1 ring-line">
                 <FaQuoteLeft className="text-brand-green/40" size={28} />
                 <blockquote className="mt-4 flex-1 text-base leading-relaxed text-ink">
@@ -58,7 +59,7 @@ export function Testimonials() {
                 <figcaption className="mt-6 border-t border-line pt-4">
                   <p className="font-semibold text-ink">{t.author}</p>
                   <p className="text-sm text-muted">
-                    {t.title}, {t.company}
+                    {[t.title, t.company].filter(Boolean).join(", ")}
                   </p>
                 </figcaption>
               </figure>

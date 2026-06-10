@@ -12,21 +12,23 @@ import {
 } from "react-icons/fa6";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { industries } from "@/data/site";
+import { getContent } from "@/sanity/getContent";
 
-const iconFor: Record<string, IconType> = {
-  Banking: FaBuildingColumns,
-  Telecommunications: FaTowerCell,
-  Technology: FaMicrochip,
-  Insurance: FaShieldHalved,
-  Manufacturing: FaIndustry,
-  "Government Agencies": FaLandmark,
-  "Oil & Gas": FaOilWell,
-  "Educational Institutions": FaGraduationCap,
-  Startups: FaRocket,
+const iconByKey: Record<string, IconType> = {
+  banking: FaBuildingColumns,
+  telecom: FaTowerCell,
+  technology: FaMicrochip,
+  insurance: FaShieldHalved,
+  manufacturing: FaIndustry,
+  government: FaLandmark,
+  oilgas: FaOilWell,
+  education: FaGraduationCap,
+  startup: FaRocket,
 };
 
-export function Industries() {
+export async function Industries() {
+  const { industries } = await getContent();
+
   return (
     <Section className="bg-white">
       <SectionHeading
@@ -36,16 +38,16 @@ export function Industries() {
       />
 
       <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3">
-        {industries.map((name, i) => {
-          const Icon = iconFor[name] ?? FaRocket;
+        {industries.map((item, i) => {
+          const Icon = iconByKey[item.icon] ?? FaRocket;
           return (
-            <Reveal key={name} delay={(i % 3) * 0.06}>
+            <Reveal key={item.name} delay={(i % 3) * 0.06}>
               <div className="group flex items-center gap-4 rounded-2xl bg-surface p-5 ring-1 ring-line transition-all hover:bg-brand-blue-light hover:ring-brand-blue/30">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-brand-blue shadow-soft transition-colors group-hover:bg-brand-blue group-hover:text-white">
                   <Icon size={22} />
                 </span>
                 <span className="text-sm font-semibold text-ink sm:text-base">
-                  {name}
+                  {item.name}
                 </span>
               </div>
             </Reveal>
