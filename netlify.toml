@@ -1,0 +1,9 @@
+# Netlify configuration for the Veltacorp Next.js site.
+# Netlify auto-detects Next.js and applies its Next.js runtime (ISR, image
+# optimization, server routes / API revalidation all supported).
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
